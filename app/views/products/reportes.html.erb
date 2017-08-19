@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><h1>Tienda de Videojuegos</h1></title>
+<style>
+  body{
+    background-color: aqua
+  }
+
+.LI{
+  font: courier;
+  font-size: 20px;
+  color: black;
+}
+
+table, td, th {
+  border: 2px solid black;
+  border-collapse: collapse;
+  font-size: 22px;
+}
+
+th{
+  background-color: blue;
+  color: white;
+  font-size: 20px;
+}
+
+table {
+  width: 60%
+  text-align:center;
+  font-size: 30px;
+  color: red;
+
+}
+
+th {
+  height: 50px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h2>Tienda de Videojuegos</h2>
+
+<%= link_to 'Nuevo producto', nuevo_prod_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Desc</th>
+      <th>Stock</th>
+      <th>Disponible</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productsprecio.each do |product| %>
+      <tr>
+        <td><%= product.nombre %></td>
+        <td><%= product.precio %></td>
+        <td><%= product.desc %></td>
+        <td><%= product.stock %></td>
+        <td><%= product.disponible %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% preciototal = @productsprecio.first %>
+<% preciototal1 = @productsprecio.last %>
+<br>
+<p><h1>El juego más barato es: <%=preciototal.nombre %>
+
+</h1></p>
+
+<p><h1>El juego más caro es: <%=preciototal1.nombre%></h1></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Desc</th>
+      <th>Stock</th>
+      <th>Disponible</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productsstock.each do |product| %>
+      <tr>
+        <td><%= product.nombre %></td>
+        <td><%= product.precio %></td>
+        <td><%= product.desc %></td>
+        <td><%= product.stock %></td>
+        <td><%= product.disponible %></td>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% stocktotal = @productsstock.first %>
+<% stocktotal1 = @productsstock.last %>
+<br>
+<p><h1>El juego con menos stock es: <%=stocktotal.nombre %></h1></p>
+
+<p><h1>El juego con máss stock es: <%=stocktotal1.nombre %></h1></p>
+</body>
+</html>
+
+
